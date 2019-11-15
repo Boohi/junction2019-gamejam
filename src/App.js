@@ -5,10 +5,12 @@ import StartScreen from "./components/StartScreen";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import GameMain from "./components/GameMain";
 
+
 function App() {
 
     return (
         <div className="App">
+		{window.gapi &&
             <Router>
                 <div>
 					<Link to="/game">Start New Game!</Link>
@@ -16,6 +18,7 @@ function App() {
                     <Route path="/game" component={GameMain}></Route>
                 </div>
             </Router>
+		}
         </div>
     );
 }

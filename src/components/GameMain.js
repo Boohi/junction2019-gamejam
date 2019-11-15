@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+
 import "./GameMain.scss"
 
 export default class GameMain extends Component {
+
     render() {
         return (
             <div>
