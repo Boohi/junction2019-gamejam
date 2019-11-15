@@ -28,6 +28,7 @@ class Game extends Component {
             hp_p1: prevState.hp_p1 - prevState.power_p2 + prevState.armor_p1
         }));
     }
+    
     render() {
         return (
             <div className="app_container">
