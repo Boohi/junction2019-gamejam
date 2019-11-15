@@ -1,3 +1,8 @@
+.player_name {
+    position: relative;
+    top: 0%;
+}
+
 .btn_container {
     display: inline-block;
     height: 10%;
@@ -7,7 +12,8 @@
 
 .p1,
 .p2 {
-    width: 40%;
+    font-size: 2vh;
+    width: 43%;
     vertical-align: bottom;
     display: inline-block;
     text-align: center;
