@@ -1,3 +1,8 @@
+.app_container {
+    margin: 0;
+    height: 100%;
+}
+
 .player_name {
     position: relative;
     top: 0%;
@@ -8,24 +13,25 @@
     height: 10%;
     width: 50%;
     text-align: center;
+    margin-top: 1em;
 }
 
 .p1,
 .p2 {
+    margin: 0;
     font-size: 2vh;
-    width: 43%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 50%;
     vertical-align: bottom;
     display: inline-block;
     text-align: center;
-    padding: 2em;
 }
 
 .player_image {
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
-    height: 50vh;
-    width: 50vw;
+    transform: translateX(-100%);
+    width: 50%;
     height: auto;
 }
 
