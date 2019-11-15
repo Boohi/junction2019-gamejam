@@ -1,17 +1,39 @@
-.p1_btn {
-    margin-left: 17%;
+.btn_container {
+    display: inline-block;
+    height: 10%;
+    width: 50%;
+    text-align: center;
 }
 
 .p1,
 .p2 {
-    width: 49%;
+    width: 40%;
     vertical-align: bottom;
     display: inline-block;
     text-align: center;
+    padding: 2em;
 }
 
 .player_image {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     height: 50vh;
     width: 50vw;
     height: auto;
+}
+
+.hp_container {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    border: 1px solid black;
+    width: 75%;
+    height: 1em;
+}
+
+.hp_bar {
+    height: 100%;
+    background-color: green;
 }
