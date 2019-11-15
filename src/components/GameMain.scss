@@ -1,0 +1,18 @@
+.game-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 20px;
+	grid-template-rows: 500px;
+	justify-content: space-around;
+	height: 500px;
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.player1-container {
+	background-color: green;
+}
+
+.player2-container {
+	background-color: blue;
+}
