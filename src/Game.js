@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Player from './Player';
+import Player1 from './Player1';
+import Player2 from './Player2';
 
 class Game extends Component {
     constructor(props) {
@@ -11,12 +12,19 @@ class Game extends Component {
             img_p2: "https://cdn11.bigcommerce.com/s-7va6f0fjxr/images/stencil/1280x1280/products/49070/65309/Girl-Stick-Figure-43-Vinyl-Decal-Sticker__36104.1506201870.jpg?c=2"
         }
     }
-    
+
+    hit_p2() {
+        this.setState((prevState, props) => ({
+            hp_p2: prevState.hp_p2 - 10
+        }));
+    }
+
     render() {
         return (
             <div>
-                <Player player="player1" health={this.state.hp_p1} image={this.state.img_p1}/>
-                <Player player="player2" health={this.state.hp_p2} image={this.state.img_p2}/>
+                <Player1 health={this.state.hp_p1} image={this.state.img_p1}/>
+                <Player2 health={this.state.hp_p2} image={this.state.img_p2}/>
+                <button onClick={() => this.hit_p2()} className="p1_btn">HIT THE BITCH</button>
             </div>
         )
     }
