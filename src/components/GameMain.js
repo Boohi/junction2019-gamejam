@@ -8,12 +8,13 @@ export default class GameMain extends Component {
         super(props);
 
         this.state = {
+			startDate: "",
             player1Mail: "otto.maenpaa@gmail.com",
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 10, gold: 0, damage: 2, armor: 0 },
-            player2: { health: 10, gold: 0, damage: 2, armor: 0 }
+            player1: { health: 11, gold: 1, damage: 2, armor: 0},
+            player2: { health: 10, gold: 0, damage: 2, armor: 0}
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -22,7 +23,8 @@ export default class GameMain extends Component {
 
     componentDidMount() {
         document.getElementById("player1input").style.display = "none";
-        document.getElementById("player2input").style.display = "none";
+		document.getElementById("player2input").style.display = "none";
+		this.setState({startDate: new Date().getTime()});
         setInterval(() => {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
@@ -39,13 +41,44 @@ export default class GameMain extends Component {
 			me = this.state.player2;
 			enemy = this.state.player1;
 		}
-		if (action === "hit") {
-			enemy.health--;
+		action = action.toLowerCase().trim();
+
+		if (action.includes("hit")) {
+			enemy.health -= me.damage;
+		} else if (action.includes("gather")) {
+			me.gold += 2;
+		} else if (action.includes("steal")) {
+			if (enemy.gold >= 1) {
+				enemy.gold--;
+				me.gold--;
+			}
+		} else if (action.includes("buy weapon")) {
+			if (me.gold >= 5) {
+				me.gold -= 5;
+				me.damage += 2;
+			}
+		}  else if (action.includes("buy armor")) {
+			if (me.gold >= 5) {
+				me.gold -= 5;
+				me.health += 10;
+				me.armor = 1;
+			}
+		}
+
+
+		this.updateState(player, me, enemy);
+	}
+
+	updateState(player, me, enemy) {
+		if (player === 1) {
 			this.setState({player1: me, player2: enemy});
+		} else if (player === 2) {
+			this.setState({player1: enemy, player2: me});
 		}
 	}
 
     handleMessage(message) {
+		if (message.date < this.state.startDate) return ;
         if (message.email === this.props.emails.player1) {
             if (
                 this.state.player1Message.date < message.date ||
@@ -66,7 +99,7 @@ export default class GameMain extends Component {
         }
     }
 
-    getPageOfMessages(start, limit = 5) {
+    getPageOfMessages(start, limit = 3) {
         let messages = [];
 
         let getMessagesRequest = window.gapi.client.gmail.users.messages.list({
