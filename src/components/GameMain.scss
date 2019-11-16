@@ -67,10 +67,30 @@ $base-orange2: #DB682E;
 	transform: translateY(-50%);
 }
 
+.global-tasks {
+	text-align: left;
+}
+
 .global-tasks > p {
-	border: 1px solid black;
-	border-radius: 10px;
+	border-top: 1px solid grey;
 	color: black;
+	padding-top: 8px;
+	margin: 7px !important;
+}
+
+.move-icon {
+	width: 20px;
+	height: 20px;
+	margin: 0 3px 0 3px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.move-description {
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
 }
 
 #test-p {
@@ -81,10 +101,6 @@ $base-orange2: #DB682E;
 
 .main-container {
 	height: 100%;
-}
-
-.player2-status {
-	
 }
 
 .host-email {

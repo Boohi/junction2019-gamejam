@@ -244,13 +244,34 @@ export default class GameMain extends Component {
                     </div>
                     <div className="global-tasks">
 						<span>{this.state.counter}</span>
-                        <p>Attack: hit</p>
-                        <p>Get gold: gather</p>
-						<p>Steal gold: steal</p>
-                        <p>Block attack: block</p>
-                        <p>Heal yourself (1 gold): eat</p>
-                        <p>Buy weapon (5 gold): buy weapon</p>
-                        <p>Buy armor (5 gold): buy armor</p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"hit"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"gather"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"steal"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"block"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"eat (1g)"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"weapon (5g)"</div>
+                        </p>
+                        <p>
+                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <div className="move-description">"armor (5g)"</div>
+                        </p>
                     </div>
                     <div className="player2-container">
                         <Player2 data={this.state.player2}></Player2>
