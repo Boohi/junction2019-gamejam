@@ -48,6 +48,7 @@ export default class Player1 extends Component {
                 </div>
                 <div className="player1-image">
                     <img
+                        id="p1_img"
                         src={'/images/Player1/Player1_' + this.props.data.armor + '_' + this.props.data.weapon + '_' + health + '.png'}
                         alt="Char"
                     ></img>

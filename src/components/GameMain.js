@@ -38,8 +38,7 @@ export default class GameMain extends Component {
                 block: 0
             },
             showSnippet: 0,
-            question: data[31]
-            //data[Math.floor(Math.random() * 35)]
+            question: data[Math.floor(Math.random() * 35)]
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -89,7 +88,41 @@ export default class GameMain extends Component {
                 }
                 enemy.block = 0;
             } else {
+                let p_img;
+                if (player === 1) {
+                    p_img = "p2_img";
+                } else {
+                    p_img = "p1_img";
+                }
                 enemy.health = Math.max(0, enemy.health - me.damage);
+                setTimeout(() => {
+                    if (!document.getElementById(p_img)) return ;
+                    if (player === 1) {
+                        document.getElementById(p_img).src = '/images/Player2/Player2_' + this.state.player2.armor + '_' + this.state.player2.weapon + '_0.png';
+                    } else {
+                        document.getElementById(p_img).src = '/images/Player1/Player1_' + this.state.player1.armor + '_' + this.state.player1.weapon + '_0.png';
+                    }
+                }, 1);
+                setTimeout(() => {
+                    if (!document.getElementById(p_img)) return ;
+                    let health;
+                    if (enemy.health >= 8) {
+                        health = 4;
+                    } else if (enemy.health >= 6) {
+                        health = 3;
+                    } else if (enemy.health >= 4) {
+                        health = 2;
+                    } else if (enemy.health >= 2) {
+                        health = 1;
+                    } else {
+                        health = 0;
+                    }
+                    if (player === 1) {
+                        document.getElementById(p_img).src = '/images/Player2/Player2_' + this.state.player2.armor + '_' + this.state.player2.weapon + '_' + health + '.png';
+                    } else {
+                        document.getElementById(p_img).src = '/images/Player1/Player1_' + this.state.player1.armor + '_' + this.state.player1.weapon + '_' + health + '.png';
+                    }
+                }, 2000);
                 if (enemy.health === 0) {
                     this.props.history.push({
                         pathname: "/win",
