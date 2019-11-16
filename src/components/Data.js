@@ -8,8 +8,7 @@ export default [
 
     {
         question: "Send the first paragraph of the Communist Manifesto",
-        answers:
-            "A spectre is haunting Europe – the spectre of communism.All the powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Tsar, Metternich and Guizot, French Radicals and German police - spies.",
+        answers: "A spectre is haunting Europe – the spectre of communism.All the powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Tsar, Metternich and Guizot, French Radicals and German police - spies.",
         difficulty: 3,
         isAsked: 0
     },
@@ -36,8 +35,7 @@ export default [
     },
 
     {
-        question:
-            "What is coarse and rough and irritating and gets everywhere?",
+        question: "What is coarse and rough and irritating and gets everywhere?",
         answers: "sand",
         difficulty: 3,
         isAsked: 0
@@ -72,16 +70,14 @@ export default [
     },
 
     {
-        question:
-            'What 3 positive numbers give the same result when multiplied together as when added together? For example "775, 226, 301"',
+        question: 'What 3 positive numbers give the same result when multiplied together as when added together? For example "775, 226, 301"',
         answers: "1, 2, 3",
         difficulty: 2,
         isAsked: 0
     },
 
     {
-        question:
-            "Which social virtual chat game by a Finnish company surpassed 200 million registered avatars in 2011?",
+        question: "Which social virtual chat game by a Finnish company surpassed 200 million registered avatars in 2011?",
         answers: "habbo hotel",
         difficulty: 2,
         isAsked: 0
@@ -95,24 +91,21 @@ export default [
     },
 
     {
-        question:
-            "In The Legend of Zelda video game series, what is the hero´s default name?",
+        question: "In The Legend of Zelda video game series, what is the hero´s default name?",
         answers: "Link",
         difficulty: 1,
         isAsked: 0
     },
 
     {
-        question:
-            'What are the names of the ghosts who chase Pac Man and Ms.Pac Man? For example, "a, b, c, d"',
+        question: 'What are the names of the ghosts who chase Pac Man and Ms.Pac Man? For example, "a, b, c, d"',
         answers: "Inky, Blinky, Pinky, Clyde",
         difficulty: 3,
         isAsked: 0
     },
 
     {
-        question:
-            "Who was the captain of the Enterprise in the pilot episode of Star Trek?",
+        question: "Who was the captain of the Enterprise in the pilot episode of Star Trek?",
         answers: ["Captain Pike", "Pike"],
         difficulty: 2,
         isAsked: 0
@@ -126,16 +119,14 @@ export default [
     },
 
     {
-        question:
-            "Which video game studio created the popular online game Fortnite?",
+        question: "Which video game studio created the popular online game Fortnite?",
         answers: "Epic Games",
         difficulty: 1,
         isAsked: 0
     },
 
     {
-        question:
-            "The first person shooter video game Doom was first released in what year?",
+        question: "The first person shooter video game Doom was first released in what year?",
         answers: "1993",
         difficulty: 1,
         isAsked: 0
@@ -210,8 +201,7 @@ export default [
     },
 
     {
-        question:
-            "The only known monotremes in the animal kingdom are the echidna and which other creature?",
+        question: "The only known monotremes in the animal kingdom are the echidna and which other creature?",
         answers: "platypus",
         difficulty: 3,
         isAsked: 0
@@ -225,8 +215,7 @@ export default [
     },
 
     {
-        question:
-            'Which Google product includes a nod to Sci - Fi classic "The Hitchhiker´s Guide To The Galaxy"?',
+        question: 'Which Google product includes a nod to Sci - Fi classic "The Hitchhiker´s Guide To The Galaxy"?',
         answers: "Chromecast",
         difficulty: 2,
         isAsked: 0
@@ -254,8 +243,7 @@ export default [
     },
 
     {
-        question:
-            "Solve this captcha https://www.flickr.com/photos/mat-/4892324133",
+        question: "Solve this captcha https://www.flickr.com/photos/mat-/4892324133",
         answers: "Nepridumannoe, hadelp",
         difficulty: 3,
         isAsked: 0

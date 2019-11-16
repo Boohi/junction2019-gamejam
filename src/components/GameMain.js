@@ -81,7 +81,7 @@ export default class GameMain extends Component {
             me.snippet = "GATHER";
             me.gold += 2;
         } else if (action.includes("steal")) {
-            me.snippet = "steal";
+            me.snippet = "STEAL";
             if (enemy.gold >= 1) {
                 enemy.gold--;
                 me.gold++;
@@ -93,7 +93,7 @@ export default class GameMain extends Component {
                 me.damage += 2;
                 me.weapon = 1;
             }
-        } else if (action.includes("buy armor")) {
+        } else if (action.includes("armor")) {
             me.snippet = "BUY ARMOR";
             if (me.gold >= 5) {
                 me.gold -= 5;
@@ -294,15 +294,15 @@ export default class GameMain extends Component {
                         </p>
                         <p>
                             <img className="move-icon" src="../heart.png" alt="attack"/>
-                            <div className="move-description">"eat (1g)"</div>
+                            <div className="move-description">"eat" (1g)</div>
                         </p>
                         <p>
                             <img className="move-icon" src="../heart.png" alt="attack"/>
-                            <div className="move-description">"weapon (5g)"</div>
+                            <div className="move-description">"weapon" (5g)</div>
                         </p>
                         <p>
                             <img className="move-icon" src="../heart.png" alt="attack"/>
-                            <div className="move-description">"armor (5g)"</div>
+                            <div className="move-description">"armor" (5g)</div>
                         </p>
                     </div>
                     <div className="player2-container">
