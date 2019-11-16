@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Player1 from "./Player1";
 import Player2 from "./Player2";
 import "./GameMain.scss";
+import data from "./Data";
 
 export default class GameMain extends Component {
     constructor(props) {
@@ -22,11 +23,13 @@ export default class GameMain extends Component {
                 action: 0, responseTime: 0, health: 10, gold: 2,
                 damage: 2, armor: 0, weapon: 0, block: 0
 			},
-			showSnippet: 0
+			showSnippet: 0,
+			question: data[Math.floor(Math.random() * 35)]
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
         this.handleMessage = this.handleMessage.bind(this);
+        this.updateQuestion = this.updateQuestion.bind(this);
     }
 
     componentDidMount() {
@@ -53,6 +56,7 @@ export default class GameMain extends Component {
     playerAction(player, action) {
         let me;
         let enemy;
+        let { question } = this.state;
         if (player === 1) {
             me = this.state.player1;
             enemy = this.state.player2;
@@ -63,14 +67,14 @@ export default class GameMain extends Component {
         action = action.toLowerCase().trim();
 
         if (action.includes("hit")) {
-			if (enemy.block) {
-				if (Math.random() > 0.5) {
-					enemy.health = Math.max(0, enemy.health - me.damage);
-				}
-				enemy.block = 0;
-			} else {
-				enemy.health = Math.max(0, enemy.health - me.damage);
-			}
+            if (enemy.block) {
+                if (Math.random() > 0.5) {
+                    enemy.health = Math.max(0, enemy.health - me.damage);
+                }
+                enemy.block = 0;
+            } else {
+                enemy.health = Math.max(0, enemy.health - me.damage);
+            }
         } else if (action.includes("gather")) {
             me.gold += 2;
         } else if (action.includes("steal")) {
@@ -81,8 +85,8 @@ export default class GameMain extends Component {
         } else if (action.includes("buy weapon")) {
             if (me.gold >= 5) {
                 me.gold -= 5;
-				me.damage += 2;
-				me.weapon = 1;
+                me.damage += 2;
+                me.weapon = 1;
             }
         } else if (action.includes("buy armor")) {
             if (me.gold >= 5) {
@@ -96,8 +100,17 @@ export default class GameMain extends Component {
                 me.health += 2;
             }
         } else if (action.includes("block")) {
-			me.block = 1;
-		}
+            me.block = 1;
+        } else if (action.includes("quest")) {
+            var i;
+            for (i = 0; i < question.answers.length; i++) {
+                if (action.includes(question.answers[i].toLowerCase())) {
+                    me.gold += question.difficulty * 2;
+                    this.updateQuestion(question);
+                    break;
+                }
+            }
+        }
 
         this.updateState(player, me, enemy);
     }
@@ -139,7 +152,11 @@ export default class GameMain extends Component {
 		setTimeout(() => {
 			this.setState({showSnippet: 0});
 		}, 4000);
-    }
+	}
+	
+	updateQuestion(question) {
+		this.setState({ question: data[Math.floor(Math.random() * 35)] });
+	}
 
     handleMessage(message) {
         if (message.date < this.state.startDate) return;
@@ -238,10 +255,11 @@ export default class GameMain extends Component {
     }
 
     render() {
+        let { question } = this.state;
         return (
             <div>
                 <img id="game-logo" src="/battlemail005.png" alt="logo"></img>
-				<p className="host-email">junction2019gamejam@gmail.com</p>
+                <p className="host-email">junction2019gamejam@gmail.com</p>
                 <div className="game-container">
                     <div className="player1-container">
                         <Player1 data={this.state.player1} showSnippet={this.state.showSnippet} snippet={this.state.player1Message.snippet}></Player1>
@@ -281,11 +299,7 @@ export default class GameMain extends Component {
                         <Player2 data={this.state.player2} showSnippet={this.state.showSnippet} snippet={this.state.player2Message.snippet}></Player2>
                     </div>
                 </div>
-                <p id="test-p">
-                    Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem
-                    ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum
-                    dalor Lorem ipsum dalor Lorem ipsum dalor{" "}
-                </p>
+                <p id="test-p">{question.question}</p>
             </div>
         );
     }
