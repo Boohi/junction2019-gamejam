@@ -17,7 +17,9 @@ export default class Player2 extends Component {
         } else {
             health = 0;
         }
-        
+    
+        let amount = Math.floor(this.props.data.health / 2);
+        let half = this.props.data.health % 2;
         return (
             <div className="player2-div">
                 <div className="player2-actions"></div>
@@ -28,13 +30,27 @@ export default class Player2 extends Component {
                     />
                 </div>
                 <div className="player2-status">
-					<div className="player2-gold">
-						<h2>Gold</h2>
-						<p>{this.props.data.gold}</p>
-					</div>
 					<div className="player2-health">
 						<h2>Health</h2>
-						<p>{this.props.data.health}</p>
+                        <p>
+                            {Array(amount).fill(
+                                <img src="/heart.png" alt="Heart"></img>
+                            )}
+                            {Array(half).fill(
+                                <img
+                                    src="/halfheart.png"
+                                    alt="Half Heart"
+                                ></img>
+                            )}
+                        </p>
+					</div>
+                    <div className="player2-gold">
+						<h2>Gold</h2>
+                        <p>
+                            {Array(this.props.data.gold).fill(
+                                <img src="/firecoin.png" alt="Gold coin"></img>
+                            )}
+                        </p>
 					</div>
 				</div>
             </div>
