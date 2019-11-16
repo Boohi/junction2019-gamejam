@@ -31,7 +31,7 @@ export default class Player2 extends Component {
 							<p>READY</p>
 						}
 						{this.props.showSnippet === 1 &&
-							<p>{this.props.snippet}</p>
+							<p>{this.props.data.snippet}</p>
 						}
 					</div>
 				</div>

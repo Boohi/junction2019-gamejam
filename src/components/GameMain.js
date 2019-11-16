@@ -16,15 +16,16 @@ export default class GameMain extends Component {
             player2Message: {},
             counter: 60,
             player1: {
-                action: 0, responseTime: 0, health: 10, gold: 5,
+                snippet: "", action: 0, responseTime: 0, health: 10, gold: 2,
                 damage: 2, armor: 0, weapon: 0, block: 0 
             },
             player2: {
-                action: 0, responseTime: 0, health: 10, gold: 2,
+                snippet: "", action: 0, responseTime: 0, health: 10, gold: 2,
                 damage: 2, armor: 0, weapon: 0, block: 0
 			},
 			showSnippet: 0,
-			question: data[Math.floor(Math.random() * 35)]
+            question: data[2]
+            //data[Math.floor(Math.random() * 35)]
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -44,6 +45,7 @@ export default class GameMain extends Component {
         setInterval(() => {
 			this.setState({counter : Math.max(this.state.counter - 1, 0)});
 			if (this.state.counter === 0 && flag === 0) {
+                this.setState({showSnippet: 1});
 				flag = 1;
 				setTimeout(() => {
 					flag = 0;
@@ -56,7 +58,6 @@ export default class GameMain extends Component {
     playerAction(player, action) {
         let me;
         let enemy;
-        let { question } = this.state;
         if (player === 1) {
             me = this.state.player1;
             enemy = this.state.player2;
@@ -67,6 +68,7 @@ export default class GameMain extends Component {
         action = action.toLowerCase().trim();
 
         if (action.includes("hit")) {
+            me.snippet = "HIT";
             if (enemy.block) {
                 if (Math.random() > 0.5) {
                     enemy.health = Math.max(0, enemy.health - me.damage);
@@ -76,44 +78,54 @@ export default class GameMain extends Component {
                 enemy.health = Math.max(0, enemy.health - me.damage);
             }
         } else if (action.includes("gather")) {
+            me.snippet = "GATHER";
             me.gold += 2;
         } else if (action.includes("steal")) {
+            me.snippet = "steal";
             if (enemy.gold >= 1) {
                 enemy.gold--;
                 me.gold++;
             }
-        } else if (action.includes("buy weapon")) {
+        } else if (action.includes("weapon")) {
+            me.snippet = "BUY WEAPON";
             if (me.gold >= 5) {
                 me.gold -= 5;
                 me.damage += 2;
                 me.weapon = 1;
             }
         } else if (action.includes("buy armor")) {
+            me.snippet = "BUY ARMOR";
             if (me.gold >= 5) {
                 me.gold -= 5;
                 me.health += 10;
                 me.armor = 1;
             }
         } else if (action.includes("eat")) {
+            me.snippet = "EAT";
             if (me.gold >= 1) {
                 me.gold--;
                 me.health += 2;
             }
         } else if (action.includes("block")) {
+            me.snippet = "BLOCK";
             me.block = 1;
-        } else if (action.includes("quest")) {
+        } else {
+            me.snippet = "QUEST";
             var i;
-            for (i = 0; i < question.answers.length; i++) {
-                if (action.includes(question.answers[i].toLowerCase())) {
-                    me.gold += question.difficulty * 2;
-                    this.updateQuestion(question);
+            for (i = 0; i < this.state.question.length; i++) {
+                if (action.includes(this.state.question.answers[i].toLowerCase())) {
+                    me.gold += this.state.question.difficulty * 2;
+                    this.updateQuestion();
                     break;
                 }
             }
         }
-
         this.updateState(player, me, enemy);
     }
+
+	updateQuestion() {
+		this.setState({ question: data[Math.floor(Math.random() * 35)] });
+	}
 
     updateState(player, me, enemy) {
         if (player === 1) {
@@ -150,12 +162,10 @@ export default class GameMain extends Component {
         player2.responseTime = 0;
 		this.setState({player1, player2, counter : 60, showSnippet: 1});
 		setTimeout(() => {
-			this.setState({showSnippet: 0});
+            player1.snippet = "";
+            player2.snippet = "";
+			this.setState({player1, player2, showSnippet: 0});
 		}, 4000);
-	}
-	
-	updateQuestion(question) {
-		this.setState({ question: data[Math.floor(Math.random() * 35)] });
 	}
 
     handleMessage(message) {
