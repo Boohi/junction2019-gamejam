@@ -135,7 +135,13 @@ export default class GameMain extends Component {
             me.gold += 2;
         } else if (action.includes("steal")) {
             me.snippet = "STEAL";
-            if (enemy.gold >= 1) {
+            if (enemy.block && enemy.gold >= 1) {
+                if (Math.random() > 0.5) {
+                    enemy.gold--;
+                    me.gold++;
+                }
+                enemy.block = 0;
+            } else if (enemy.gold >= 1) {
                 enemy.gold--;
                 me.gold++;
             }
@@ -203,10 +209,14 @@ export default class GameMain extends Component {
         let player2Message = this.state.player2Message.snippet;
 
         if (player1Action === 0 && player2Action === 0) {
+            this.playerAction(1, "hit");
+            this.playerAction(2, "hit");
         } else if (player1Action === 0) {
             this.playerAction(2, player2Message);
+            this.playerAction(1, "hit");
         } else if (player2Action === 0) {
             this.playerAction(1, player1Message);
+            this.playerAction(2, "hit");
         } else if (
             this.state.player2.responseTime > this.state.player1.responseTime
         ) {
@@ -349,32 +359,52 @@ export default class GameMain extends Component {
                     <div className="global-tasks">
                         <span>{this.state.counter}</span>
                         <p>
-                            <img className="move-icon" src="../hit.png" alt="attack"/>
-                            <div className="move-description">"hit"</div>
+                            <img
+                                className="move-icon"
+                                src="../hit.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">hit</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../quest.png" alt="attack"/>
-                            <div className="move-description">"quest"</div>
+                            <img
+                                className="move-icon"
+                                src="../steal.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">steal</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../steal.png" alt="attack"/>
-                            <div className="move-description">"steal"</div>
+                            <img
+                                className="move-icon"
+                                src="../block.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">block</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../block.png" alt="attack"/>
-                            <div className="move-description">"block"</div>
+                            <img
+                                className="move-icon"
+                                src="../eat.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">eat (1g)</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../eat.png" alt="attack"/>
-                            <div className="move-description">"eat" (1g)</div>
+                            <img
+                                className="move-icon"
+                                src="../weapon.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">weapon (5g)</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../weapon.png" alt="attack"/>
-                            <div className="move-description">"weapon" (5g)</div>
-                        </p>
-                        <p>
-                            <img className="move-icon" src="../armor.png" alt="attack"/>
-                            <div className="move-description">"armor" (5g)</div>
+                            <img
+                                className="move-icon"
+                                src="../armor.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">armor (5g)</div>
                         </p>
                     </div>
                     <div className="player2-container">
