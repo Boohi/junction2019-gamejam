@@ -13,8 +13,8 @@ export default class GameMain extends Component {
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 3, gold: 1, damage: 2, armor: 0, weapon: 1 },
-            player2: { health: 5, gold: 0, damage: 2, armor: 1, weapon: 0 }
+            player1: { health: 10, gold: 1, damage: 2, armor: 0, weapon: 0, block: 0 },
+            player2: { health: 10, gold: 2, damage: 2, armor: 0, weapon: 0, block: 0 }
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -44,7 +44,14 @@ export default class GameMain extends Component {
         action = action.toLowerCase().trim();
 
         if (action.includes("hit")) {
-            enemy.health = Math.max(0, enemy.health - me.damage);
+			if (enemy.block) {
+				if (Math.random() > 0.5) {
+					enemy.health = Math.max(0, enemy.health - me.damage);
+				}
+				enemy.block = 0;
+			} else {
+				enemy.health = Math.max(0, enemy.health - me.damage);
+			}
         } else if (action.includes("gather")) {
             me.gold += 2;
         } else if (action.includes("steal")) {
@@ -55,7 +62,8 @@ export default class GameMain extends Component {
         } else if (action.includes("buy weapon")) {
             if (me.gold >= 5) {
                 me.gold -= 5;
-                me.damage += 2;
+				me.damage += 2;
+				me.weapon = 1;
             }
         } else if (action.includes("buy armor")) {
             if (me.gold >= 5) {
@@ -68,7 +76,9 @@ export default class GameMain extends Component {
                 me.gold--;
                 me.health += 2;
             }
-        }
+        } else if (action.includes("block")) {
+			me.block = 1;
+		}
 
         this.updateState(player, me, enemy);
     }
@@ -168,6 +178,7 @@ export default class GameMain extends Component {
         return (
             <div>
                 <img id="game-logo" src="/battlemail005.png" alt="logo"></img>
+				<p className="host-email">junction2019gamejam@gmail.com</p>
                 <div className="game-container">
                     <div className="player1-container">
                         <Player1 data={this.state.player1}></Player1>
@@ -175,6 +186,7 @@ export default class GameMain extends Component {
                     <div className="global-tasks">
                         <p>Attack: hit</p>
                         <p>Get gold: gather</p>
+						<p>Steal gold: steal</p>
                         <p>Block attack: block</p>
                         <p>Heal yourself (1 gold): eat</p>
                         <p>Buy weapon (5 gold): buy weapon</p>

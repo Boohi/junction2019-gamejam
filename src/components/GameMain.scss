@@ -5,7 +5,7 @@ $base-orange2: #DB682E;
 
 .game-container {
 	display: grid;
-	grid-template-columns: 1fr 0.28fr 1fr;
+	grid-template-columns: 1fr 0.40fr 1fr;
 	grid-template-rows: 400px;
 	justify-content: space-around;
 	height: 400px;
@@ -19,7 +19,9 @@ $base-orange2: #DB682E;
 }
 
 .global-tasks {
-	background: linear-gradient(to right, $base-purple1, lightgray 20%, lightgray 80%, $base-orange1);
+	padding-left: 20px;
+	padding-right: 20px;
+	background: linear-gradient(to right, $base-purple1, lightgray 10%, lightgray 90%, $base-orange1);
 }
 
 .global-tasks > p {
@@ -37,11 +39,38 @@ $base-orange2: #DB682E;
 	
 }
 
-.player1-status img {
+.host-email {
+	color: #fff;
+	text-align: center;
+	-webkit-animation: glow 3s ease-in-out infinite alternate;
+	-moz-animation: glow 3s ease-in-out infinite alternate;
+	animation: glow 3s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+	from {
+	  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px $base-purple1, 0 0 40px $base-purple2, 0 0 50px $base-purple2, 0 0 60px $base-purple2, 0 0 70px $base-purple2;
+	}
+	to {
+	  text-shadow: 0 0 20px #fff, 0 0 30px $base-orange1, 0 0 40px $base-orange1, 0 0 50px $base-orange2, 0 0 60px $base-orange2, 0 0 70px $base-orange2, 0 0 80px $base-orange2;
+	}
+  }
+
+.host-email {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 22px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.player1-status img, .player2-status img {
 	width: 50px;
 	height: 40px;
 	margin-left: 1px;
 	margin-right: 1px;
+	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .9));
 }
 
 .player2-container {
@@ -71,6 +100,7 @@ $base-orange2: #DB682E;
 .player1-image img, .player2-image img {
 	margin-top: 50px;
 	width: 75%;
+	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .9));
 }
 
 #game-logo {
