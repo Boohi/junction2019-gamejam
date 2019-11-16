@@ -8,6 +8,7 @@ export default class GameMain extends Component {
         super(props);
 
         this.state = {
+			startDate: "",
             player1Mail: "otto.maenpaa@gmail.com",
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
@@ -22,7 +23,8 @@ export default class GameMain extends Component {
 
     componentDidMount() {
         document.getElementById("player1input").style.display = "none";
-        document.getElementById("player2input").style.display = "none";
+		document.getElementById("player2input").style.display = "none";
+		this.setState({startDate: new Date().getTime()});
         setInterval(() => {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
@@ -76,6 +78,7 @@ export default class GameMain extends Component {
 	}
 
     handleMessage(message) {
+		if (message.date < this.state.startDate) return ;
         if (message.email === this.props.emails.player1) {
             if (
                 this.state.player1Message.date < message.date ||
@@ -96,7 +99,7 @@ export default class GameMain extends Component {
         }
     }
 
-    getPageOfMessages(start, limit = 5) {
+    getPageOfMessages(start, limit = 3) {
         let messages = [];
 
         let getMessagesRequest = window.gapi.client.gmail.users.messages.list({
