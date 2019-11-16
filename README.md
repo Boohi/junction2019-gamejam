@@ -14,11 +14,12 @@ Also, use Junction 2019 theme colours in a creative way: The colours in hexadeci
 BattleMail is PBeM (Play By eMail) game, where players fiercely fight each other on the fields of glory. According to the theme, we combined a new-ish gameplay element (party game) with old and clunky controls (email).
 <br /><br />
 
-### How to install:
+## How to install:
 
 >[Download Node](https://nodejs.org/en/download/)
 
->[Clone the repo](https://github.com/Boohi/junction2019-gamejam.git)
+Clone the repo
+>https://github.com/Boohi/junction2019-gamejam.git
 
 Navigate to the folder in terminal, then:
 >npm install
@@ -26,11 +27,13 @@ Navigate to the folder in terminal, then:
 Once installed, start localhost for game:
 >npm start
 
-<br /><br />
+<br />
 
-### How to play:
+## How to play:
 
 Enter both players' emails in the start screen and start the game. Each round both players can queue an action by sending an email to **junction2019gamejam@gmail.com**, with the action of their choosing as the body. Subject field can be left empty.
+
+The game ends once one player reaches zero HP. Note that the game performs actions in the order that they are received, so act quick if you want to hit the enemy before he can armor up!
 
 Available actions:
 
@@ -40,9 +43,7 @@ Available actions:
 **steal** ---> steal (1g) from your opponent<br />
 **weapon** ---> buy weapon for (5g) - increase your power from 2 to 4<br />
 **armor** ---> buy armor for (5g) - gain 5 more hearts<br />
-**QUESTS** ---> answer the quest question correctly before your opponent for a chance to gain massive loot'<br />
-
-The game ends once one player reaches zero HP.
+**QUESTS** ---> answer the quest question correctly before your opponent for a chance to gain massive loot'
 <br /><br />
 
 ## Contributors
