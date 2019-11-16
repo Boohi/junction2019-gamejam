@@ -97,9 +97,8 @@ export default class GameMain extends Component {
         } else if (action.includes("block")) {
             me.block = 1;
         } else if (action.includes("quest")) {
-            if (action.includes(question.answers)) {
+            if (action.includes(question.answers.toLowerCase())) {
                 me.gold += question.difficulty * 2;
-                console.log("Well done!");
                 this.updateQuestion(question);
             }
         }
