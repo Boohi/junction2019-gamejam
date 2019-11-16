@@ -1,7 +1,11 @@
+$base-purple1: #B200B7;
+$base-purple2: #770578;
+$base-orange1: #f38100;
+$base-orange2: #DB682E;
+
 .game-container {
 	display: grid;
 	grid-template-columns: 1fr 0.28fr 1fr;
-	column-gap: 20px;
 	grid-template-rows: 400px;
 	justify-content: space-around;
 	height: 400px;
@@ -11,7 +15,11 @@
 }
 
 .player1-container {
-	background-color: purple;
+	background: linear-gradient(to left, $base-purple1, $base-purple2);
+}
+
+.global-tasks {
+	background: linear-gradient(to right, $base-purple1, lightgray 20%, lightgray 80%, $base-orange1);
 }
 
 .global-tasks > p {
@@ -26,7 +34,7 @@
 
 
 .player2-status {
-	background-color: orange;
+	
 }
 
 .player1-status img {
@@ -37,7 +45,7 @@
 }
 
 .player2-container {
-	background-color: blue;
+	background: linear-gradient(to right, $base-orange1, $base-orange2);
 }
 
 .authorize-button {
