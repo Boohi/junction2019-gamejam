@@ -1,22 +1,28 @@
-.add-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+.win-grid {
+	display: grid;
+	grid-template-rows: 200px 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 
-.add-player1 {
-    width: 90%;
-    height: 25%;
-    padding-top: 55px;
-    margin-right: 25px;
-    margin-left: auto;
+.grid-header {
+	grid-row-start: 1;
+	grid-column-start: 1;
+	grid-row-end: 2;
+	grid-column-end: 3;
 }
 
-.add-player2 {
-    width: 90%;
-    height: 25%;
-    padding-top: 55px;
-    margin-left: 25px;
-    margin-right: auto;
+.grid-p1 {
+	grid-row-start: 2;
+	grid-column-start: 1;
+	grid-row-end: 3;
+	grid-column-end:2;
+}
+
+.grid-p2 {
+	grid-row-start: 2;
+	grid-column-start: 2;
+	grid-row-end: 3;
+	grid-column-end:3;
 }
 
 .main-container a {

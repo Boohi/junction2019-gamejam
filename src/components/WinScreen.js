@@ -19,25 +19,25 @@ export default class WinScreen extends Component {
     render() {
         console.log("test");
         return (
-            <div className="add-grid">
-                <div className="add-player1">
+            <div className="win-grid">
+		<div className="grid-header">
+			<img src="battlemail005.png" alt="Game logo"></img>
+                    	<h1>Player X Wins!</h1>
+		</div>
+                <div className="grid-p1">
                     <img
                         src={"/" + this.state.p1med}
                         alt="player 1"
-                        width="250"
-                        height="500"
+                        width="500"
+                        height="600"
                     ></img>
                 </div>
-                <div className="add-bloc">
-                    <img src="battlemail005.png" alt="Game logo"></img>
-                    <h1>Player X Wins!</h1>
-                </div>
-                <div className="add-player2">
+                <div className="grid-p2">
                     <img
                         src={"/" + this.state.p2med}
                         alt="player 2"
-                        width="250"
-                        height="500"
+                        width="500"
+                        height="600"
                     ></img>
                 </div>
             </div>
