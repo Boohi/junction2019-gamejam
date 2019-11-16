@@ -13,8 +13,8 @@ export default class GameMain extends Component {
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 11, gold: 1, damage: 2, armor: 0, weapon: 1},
-            player2: { health: 10, gold: 0, damage: 2, armor: 0, weapon: 0}
+            player1: { health: 3, gold: 1, damage: 2, armor: 0, weapon: 1},
+            player2: { health: 5, gold: 0, damage: 2, armor: 1, weapon: 0}
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
