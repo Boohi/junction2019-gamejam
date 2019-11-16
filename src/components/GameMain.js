@@ -97,9 +97,13 @@ export default class GameMain extends Component {
         } else if (action.includes("block")) {
             me.block = 1;
         } else if (action.includes("quest")) {
-            if (action.includes(question.answers.toLowerCase())) {
-                me.gold += question.difficulty * 2;
-                this.updateQuestion(question);
+            var i;
+            for (i = 0; i < question.answers.length; i++) {
+                if (action.includes(question.answers[i].toLowerCase())) {
+                    me.gold += question.difficulty * 2;
+                    this.updateQuestion(question);
+                    break;
+                }
             }
         }
 
@@ -219,6 +223,7 @@ export default class GameMain extends Component {
                         <p>Heal yourself (1 gold): eat</p>
                         <p>Buy weapon (5 gold): buy weapon</p>
                         <p>Buy armor (5 gold): buy armor</p>
+                        <p>Quest below: quest</p>
                     </div>
                     <div className="player2-container">
                         <Player2 data={this.state.player2}></Player2>
