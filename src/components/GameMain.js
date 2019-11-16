@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Player1 from "./Player1";
+import Player2 from "./Player2";
 import "./GameMain.scss";
 
 export default class GameMain extends Component {
@@ -9,9 +11,9 @@ export default class GameMain extends Component {
             player1Mail: "otto.maenpaa@gmail.com",
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
-			player2Message: {},
-			player1: {health: 100, gold: 0, damage: 5, armor: 5},
-			player2: {health: 100, gold: 0, damage: 5, armor: 5}
+            player2Message: {},
+            player1: { health: 10, gold: 0, damage: 2, armor: 0 },
+            player2: { health: 10, gold: 0, damage: 2, armor: 0 }
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -19,14 +21,29 @@ export default class GameMain extends Component {
     }
 
     componentDidMount() {
-		document.getElementById("player1input").style.display = "none";
-		document.getElementById("player2input").style.display = "none";
+        document.getElementById("player1input").style.display = "none";
+        document.getElementById("player2input").style.display = "none";
         setInterval(() => {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
-    }
-
+	}
+	
+	playerAction(player, action) {
+		let me;
+		let enemy;
+		if (player === 1) {
+			me = this.state.player1;
+			enemy = this.state.player2;
+		} else {
+			me = this.state.player2;
+			enemy = this.state.player1;
+		}
+		if (action === "hit") {
+			enemy.health--;
+			this.setState({player1: me, player2: enemy});
+		}
+	}
 
     handleMessage(message) {
         if (message.email === this.props.emails.player1) {
@@ -34,7 +51,8 @@ export default class GameMain extends Component {
                 this.state.player1Message.date < message.date ||
                 this.state.player1Message.date === undefined
             ) {
-                this.setState({ player1Message: message });
+				this.setState({ player1Message: message });
+				this.playerAction(1, message.snippet);
             }
         }
         if (message.email === this.props.emails.player2) {
@@ -42,7 +60,8 @@ export default class GameMain extends Component {
                 this.state.player2Message.date < message.date ||
                 this.state.player2Message.date === undefined
             ) {
-                this.setState({ player2Message: message });
+				this.setState({ player2Message: message });
+				this.playerAction(2, message.snippet);
             }
         }
     }
@@ -89,7 +108,7 @@ export default class GameMain extends Component {
                             );
                         } else if (header.name === "Date") {
                             date = new Date(header.value).getTime();
-						}
+                        }
                     }
 
                     this.handleMessage({
@@ -108,21 +127,26 @@ export default class GameMain extends Component {
         });
     }
 
-
     render() {
         return (
             <div>
-                <h1>THE GAME</h1>
+                <img id="game-logo" src="/battlemail005.png" alt="logo"></img>
                 <div className="game-container">
                     <div className="player1-container">
-						<p>Player 1: {this.props.emails.player1}</p>
-						<p>Latest message: {this.state.player1Message.snippet}</p>
+						<Player1 data={this.state.player1}></Player1>
+					</div>
+					<div className="global-tasks">
+						<p>Attack: hit</p>
+						<p>Get gold: gather</p>
+						<p>Block attack: block</p>
+						<p>Buy weapon (5 gold): buy weapon</p>
+						<p>Buy armor (5 gold): buy armor</p>
 					</div>
                     <div className="player2-container">
-						<p>Player 2: {this.props.emails.player2}</p>
-						<p>Latest message: {this.state.player2Message.snippet}</p>
+						<Player2 data={this.state.player2}></Player2>
 					</div>
                 </div>
+				<p id="test-p">Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor Lorem ipsum dalor </p>
             </div>
         );
     }
