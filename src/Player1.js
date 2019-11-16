@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import HealthBar from './HealthBar';
 
 export default class Player1 extends Component {
-
     render () {
         return (
             <div className="p1">
