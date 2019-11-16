@@ -13,7 +13,7 @@ export default class GameMain extends Component {
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 10, gold: 1, damage: 2, armor: 0, weapon: 0, block: 0 },
+            player1: { health: 10, gold: 2, damage: 2, armor: 0, weapon: 0, block: 0 },
             player2: { health: 10, gold: 2, damage: 2, armor: 0, weapon: 0, block: 0 }
         };
 
