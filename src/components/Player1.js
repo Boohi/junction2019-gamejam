@@ -20,7 +20,6 @@ export default class Player1 extends Component {
 		
         let amount = Math.floor(this.props.data.health / 2);
 		let half = this.props.data.health % 2;
-		console.log(this.props.snippet);
         return (
             <div className="player1-div">
                 <div className="player1-status">

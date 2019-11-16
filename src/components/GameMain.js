@@ -24,7 +24,7 @@ export default class GameMain extends Component {
                 damage: 2, armor: 0, weapon: 0, block: 0
 			},
 			showSnippet: 0,
-            question: data[2]
+            question: data[31]
             //data[Math.floor(Math.random() * 35)]
         };
 
@@ -115,7 +115,8 @@ export default class GameMain extends Component {
         } else {
             me.snippet = "QUEST";
             var i;
-            for (i = 0; i < this.state.question.length; i++) {
+            for (i = 0; i < this.state.question.answers.length; i++) {
+                console.log(action, this.state.question.answers[i].toLowerCase());
                 if (action.includes(this.state.question.answers[i].toLowerCase())) {
                     me.gold += this.state.question.difficulty * 2;
                     this.updateQuestion();
