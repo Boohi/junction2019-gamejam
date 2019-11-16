@@ -52,7 +52,16 @@ export default class Player1 extends Component {
                         alt="Char"
                     ></img>
                 </div>
-                <div className="player1-actions"></div>
+                <div className="player1-actions">
+					<div className="player1-bubble">
+						{this.props.data.action === 0 &&
+							<p>...</p>
+						}
+						{this.props.data.action === 1 &&
+							<p>READY</p>
+						}
+					</div>
+				</div>
             </div>
         );
     }

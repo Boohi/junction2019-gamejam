@@ -31,15 +31,20 @@ export default class GameMain extends Component {
     componentDidMount() {
         document.getElementById("player1input").style.display = "none";
         document.getElementById("player2input").style.display = "none";
-        this.setState({ startDate: new Date().getTime() });
+		this.setState({ startDate: new Date().getTime() });
+		let flag = 0;
         setInterval(() => {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
         setInterval(() => {
 			this.setState({counter : Math.max(this.state.counter - 1, 0)});
-			if (this.state.counter === 0) {
-				this.playRound();
+			if (this.state.counter === 0 && flag === 0) {
+				flag = 1;
+				setTimeout(() => {
+					flag = 0;
+					this.playRound();
+				}, 3000)
 			}
         }, 1000);
     }
@@ -176,6 +181,7 @@ export default class GameMain extends Component {
         });
 
         getMessagesRequest.execute(response => {
+			if (!response.messages) return;
             let numberOfMessageDetailsToFetch = response.messages.length;
             response.messages.forEach((message, messageIndex) => {
                 messages.push(message);
@@ -237,6 +243,7 @@ export default class GameMain extends Component {
                         <Player1 data={this.state.player1}></Player1>
                     </div>
                     <div className="global-tasks">
+						<span>{this.state.counter}</span>
                         <p>Attack: hit</p>
                         <p>Get gold: gather</p>
 						<p>Steal gold: steal</p>
@@ -244,11 +251,6 @@ export default class GameMain extends Component {
                         <p>Heal yourself (1 gold): eat</p>
                         <p>Buy weapon (5 gold): buy weapon</p>
                         <p>Buy armor (5 gold): buy armor</p>
-                        <p>{this.state.counter}</p>
-                        <p>P1: {this.state.player1.action}</p>
-                        <p>P2: {this.state.player2.action}</p>
-                        <p>P1 restime: {this.state.player1.responseTime}</p>
-                        <p>P2 restime: {this.state.player1.responseTime}</p>
                     </div>
                     <div className="player2-container">
                         <Player2 data={this.state.player2}></Player2>

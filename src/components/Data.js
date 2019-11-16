@@ -7,21 +7,18 @@ export default [
 
     {
         question: "Send the first paragraph of the Communist Manifesto",
-        answers:
-            "A spectre is haunting Europe – the spectre of communism.All the powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Tsar, Metternich and Guizot, French Radicals and German police - spies.",
+        answers: "A spectre is haunting Europe – the spectre of communism.All the powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Tsar, Metternich and Guizot, French Radicals and German police - spies.",
         difficulty: 3
     },
 
     {
-        question:
-            "RIDDLE: What belongs to you, but other people use it more than you?",
+        question: "RIDDLE: What belongs to you, but other people use it more than you?",
         answers: ["your name", "my name", "name"],
         difficulty: 3
     },
 
     {
-        question:
-            "Re-arrange the letters, O O U S W T D N E J R, to spell just one word.What is it ?",
+        question: "Re-arrange the letters, O O U S W T D N E J R, to spell just one word.What is it ?",
         answers: "just one word",
         difficulty: 3
     },

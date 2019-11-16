@@ -22,7 +22,16 @@ export default class Player2 extends Component {
         let half = this.props.data.health % 2;
         return (
             <div className="player2-div">
-                <div className="player2-actions"></div>
+                <div className="player2-actions">
+				<div className="player2-bubble">
+						{this.props.data.action === 0 &&
+							<p>...</p>
+						}
+						{this.props.data.action === 1 &&
+							<p>READY</p>
+						}
+					</div>
+				</div>
                 <div className="player2-image">
                     <img 
                         src={'/images/Player2/Player2_' + this.props.data.armor + '_' + this.props.data.weapon + '_' + health + '.png'}
