@@ -15,7 +15,7 @@ export default class Player1 extends Component {
 					</div>
 				</div>
 				<div className="player1-image">
-					<img src="/images/Player_1_naked/Player 1 naked.png" alt="Char"></img>
+					<img src={'/images/Player1_' + this.props.armor + '_' + this.props.weapon + '_4'} alt="Char"></img>
 				</div>
 				<div className="player1-actions">
 
