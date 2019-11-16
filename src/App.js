@@ -96,7 +96,6 @@ function App() {
                                 </div>
                             </div>
                             <Link to="/game">Start New Game!</Link>
-                            <Link to="/win">End the game!</Link>
                         </div>
                     </Router>
                 </div>

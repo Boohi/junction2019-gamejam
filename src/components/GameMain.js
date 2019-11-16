@@ -16,14 +16,28 @@ export default class GameMain extends Component {
             player2Message: {},
             counter: 60,
             player1: {
-                snippet: "", action: 0, responseTime: 0, health: 10, gold: 2,
-                damage: 2, armor: 0, weapon: 0, block: 0 
+                snippet: "",
+                action: 0,
+                responseTime: 0,
+                health: 10,
+                gold: 2,
+                damage: 2,
+                armor: 0,
+                weapon: 0,
+                block: 0
             },
             player2: {
-                snippet: "", action: 0, responseTime: 0, health: 10, gold: 2,
-                damage: 2, armor: 0, weapon: 0, block: 0
-			},
-			showSnippet: 0,
+                snippet: "",
+                action: 0,
+                responseTime: 0,
+                health: 10,
+                gold: 2,
+                damage: 2,
+                armor: 0,
+                weapon: 0,
+                block: 0
+            },
+            showSnippet: 0,
             question: data[31]
             //data[Math.floor(Math.random() * 35)]
         };
@@ -36,22 +50,22 @@ export default class GameMain extends Component {
     componentDidMount() {
         document.getElementById("player1input").style.display = "none";
         document.getElementById("player2input").style.display = "none";
-		this.setState({ startDate: new Date().getTime() });
-		let flag = 0;
+        this.setState({ startDate: new Date().getTime() });
+        let flag = 0;
         setInterval(() => {
-			this.getPageOfMessages();
+            this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
         setInterval(() => {
-			this.setState({counter : Math.max(this.state.counter - 1, 0)});
-			if (this.state.counter === 0 && flag === 0) {
-                this.setState({showSnippet: 1});
-				flag = 1;
-				setTimeout(() => {
-					flag = 0;
-					this.playRound();
-				}, 3000)
-			}
+            this.setState({ counter: Math.max(this.state.counter - 1, 0) });
+            if (this.state.counter === 0 && flag === 0) {
+                this.setState({ showSnippet: 1 });
+                flag = 1;
+                setTimeout(() => {
+                    flag = 0;
+                    this.playRound();
+                }, 3000);
+            }
         }, 1000);
     }
 
@@ -75,10 +89,13 @@ export default class GameMain extends Component {
                 }
                 enemy.block = 0;
             } else {
-				enemy.health = Math.max(0, enemy.health - me.damage);
-				if (enemy.health === 0) {
-					this.props.history.push({pathname: '/win', state: { winner: player }});
-				}
+                enemy.health = Math.max(0, enemy.health - me.damage);
+                if (enemy.health === 0) {
+                    this.props.history.push({
+                        pathname: "/win",
+                        state: { winner: player }
+                    });
+                }
             }
         } else if (action.includes("gather")) {
             me.snippet = "GATHER";
@@ -116,8 +133,15 @@ export default class GameMain extends Component {
             me.snippet = "QUEST";
             var i;
             for (i = 0; i < this.state.question.answers.length; i++) {
-                console.log(action, this.state.question.answers[i].toLowerCase());
-                if (action.includes(this.state.question.answers[i].toLowerCase())) {
+                console.log(
+                    action,
+                    this.state.question.answers[i].toLowerCase()
+                );
+                if (
+                    action.includes(
+                        this.state.question.answers[i].toLowerCase()
+                    )
+                ) {
                     me.gold += this.state.question.difficulty * 2;
                     this.updateQuestion();
                     break;
@@ -127,9 +151,9 @@ export default class GameMain extends Component {
         this.updateState(player, me, enemy);
     }
 
-	updateQuestion() {
-		this.setState({ question: data[Math.floor(Math.random() * 35)] });
-	}
+    updateQuestion() {
+        this.setState({ question: data[Math.floor(Math.random() * 35)] });
+    }
 
     updateState(player, me, enemy) {
         if (player === 1) {
@@ -146,12 +170,13 @@ export default class GameMain extends Component {
         let player2Message = this.state.player2Message.snippet;
 
         if (player1Action === 0 && player2Action === 0) {
-            ;
         } else if (player1Action === 0) {
             this.playerAction(2, player2Message);
         } else if (player2Action === 0) {
             this.playerAction(1, player1Message);
-        } else if (this.state.player2.responseTime > this.state.player1.responseTime) {
+        } else if (
+            this.state.player2.responseTime > this.state.player1.responseTime
+        ) {
             this.playerAction(1, player1Message);
             this.playerAction(2, player2Message);
         } else {
@@ -164,13 +189,13 @@ export default class GameMain extends Component {
         player1.responseTime = 0;
         player2.action = 0;
         player2.responseTime = 0;
-		this.setState({player1, player2, counter : 60, showSnippet: 1});
-		setTimeout(() => {
+        this.setState({ player1, player2, counter: 60, showSnippet: 1 });
+        setTimeout(() => {
             player1.snippet = "";
             player2.snippet = "";
-			this.setState({player1, player2, showSnippet: 0});
-		}, 4000);
-	}
+            this.setState({ player1, player2, showSnippet: 0 });
+        }, 4000);
+    }
 
     handleMessage(message) {
         if (message.date < this.state.startDate) return;
@@ -184,7 +209,10 @@ export default class GameMain extends Component {
                 player1Action.responseTime = new Date().getTime();
                 this.setState({ player1Action });
                 this.setState({ player1Message: message });
-                if (this.state.player1.action === 1 && this.state.player2.action === 1) {
+                if (
+                    this.state.player1.action === 1 &&
+                    this.state.player2.action === 1
+                ) {
                     this.playRound();
                 }
             }
@@ -199,7 +227,10 @@ export default class GameMain extends Component {
                 player2Action.responseTime = new Date().getTime();
                 this.setState({ player2Action });
                 this.setState({ player2Message: message });
-                if (this.state.player1.action === 1 && this.state.player2.action === 1) {
+                if (
+                    this.state.player1.action === 1 &&
+                    this.state.player2.action === 1
+                ) {
                     this.playRound();
                 }
             }
@@ -216,7 +247,7 @@ export default class GameMain extends Component {
         });
 
         getMessagesRequest.execute(response => {
-			if (!response.messages) return;
+            if (!response.messages) return;
             let numberOfMessageDetailsToFetch = response.messages.length;
             response.messages.forEach((message, messageIndex) => {
                 messages.push(message);
@@ -276,41 +307,79 @@ export default class GameMain extends Component {
                 <p className="host-email">junction2019gamejam@gmail.com</p>
                 <div className="game-container">
                     <div className="player1-container">
-                        <Player1 data={this.state.player1} showSnippet={this.state.showSnippet} snippet={this.state.player1Message.snippet}></Player1>
+                        <Player1
+                            data={this.state.player1}
+                            showSnippet={this.state.showSnippet}
+                            snippet={this.state.player1Message.snippet}
+                        ></Player1>
                     </div>
                     <div className="global-tasks">
-						<span>{this.state.counter}</span>
+                        <span>{this.state.counter}</span>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"hit"</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"gather"</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"steal"</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"block"</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"eat" (1g)</div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
-                            <div className="move-description">"weapon" (5g)</div>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
+                            <div className="move-description">
+                                "weapon" (5g)
+                            </div>
                         </p>
                         <p>
-                            <img className="move-icon" src="../heart.png" alt="attack"/>
+                            <img
+                                className="move-icon"
+                                src="../heart.png"
+                                alt="attack"
+                            />
                             <div className="move-description">"armor" (5g)</div>
                         </p>
                     </div>
                     <div className="player2-container">
-                        <Player2 data={this.state.player2} showSnippet={this.state.showSnippet} snippet={this.state.player2Message.snippet}></Player2>
+                        <Player2
+                            data={this.state.player2}
+                            showSnippet={this.state.showSnippet}
+                            snippet={this.state.player2Message.snippet}
+                        ></Player2>
                     </div>
                 </div>
                 <p id="test-p">{question.question}</p>
