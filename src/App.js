@@ -11,7 +11,7 @@ function App() {
         <div className="App">
             <Router>
                 <div>
-					<Link to="/game">Start New Game!</Link>
+					
                     <Route exact path="/" component={StartScreen}></Route>
                     <Route path="/game" component={GameMain}></Route>
                 </div>
