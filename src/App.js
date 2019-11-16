@@ -4,6 +4,7 @@ import "./App.css";
 import StartScreen from "./components/StartScreen";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import GameMain from "./components/GameMain";
+import WinScreen from "./components/WinScreen";
 let clientId =
     "133675380584-86ac3ndr5m7il6b79l5lqr5jitc8g6a1.apps.googleusercontent.com";
 let apiKey = "AIzaSyC86syVDiTJq6RTioJoXeEb17biIE0meXc";
@@ -73,6 +74,11 @@ function App() {
                                     />
                                 )}
                             ></Route>
+                            <Route
+                                exact
+                                path="/win"
+                                component={WinScreen}
+                            ></Route>
                             <div className="input-fields">
                                 <div>
                                     <input
@@ -90,6 +96,7 @@ function App() {
                                 </div>
                             </div>
                             <Link to="/game">Start New Game!</Link>
+                            <Link to="/win">End the game!</Link>
                         </div>
                     </Router>
                 </div>
