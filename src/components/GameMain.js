@@ -37,7 +37,10 @@ export default class GameMain extends Component {
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
         setInterval(() => {
-            this.setState({counter : Math.max(this.state.counter - 1, 0)});
+			this.setState({counter : Math.max(this.state.counter - 1, 0)});
+			if (this.state.counter === 0) {
+				this.playRound();
+			}
         }, 1000);
     }
 
