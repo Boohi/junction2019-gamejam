@@ -27,9 +27,6 @@ function App() {
         console.log(window.gapi);
         window.gapi.auth2.getAuthInstance().signIn();
     }
-    function handleSignoutClick(event) {
-        window.gapi.auth2.getAuthInstance().signOut();
-    }
 
     function handleClientLoad() {
         // Load the API client and auth2 library
@@ -44,12 +41,6 @@ function App() {
                 scope: scopes
             });
 	}
-	var input1 = "";
-	var input2 = "";
-	function printEmail() {
-		var input1 = document.getElementById("player1input").value;
-		var input2 = document.getElementById("player2input").value;
-	}
 
     return (
         <div className="App">
@@ -60,7 +51,6 @@ function App() {
                         onClick={() => handleAuthClick()}
                     >
                     </div>
-					<div className="testButton" onClick={() => printEmail()}></div>
 					<input type="text" id="player1input"></input>
 					<input type="text" id="player2input"></input>
                     <Router>
