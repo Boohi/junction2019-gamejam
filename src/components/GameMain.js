@@ -12,8 +12,8 @@ export default class GameMain extends Component {
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 10, gold: 0, damage: 2, armor: 0 },
-            player2: { health: 10, gold: 0, damage: 2, armor: 0 }
+            player1: { health: 11, gold: 1, damage: 2, armor: 0},
+            player2: { health: 10, gold: 0, damage: 2, armor: 0}
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -39,10 +39,28 @@ export default class GameMain extends Component {
 			me = this.state.player2;
 			enemy = this.state.player1;
 		}
+		action = action.toLowerCase().trim();
 
-		if (action === "hit") {
-			enemy.health--;
-			this.setState({player1: me, player2: enemy});
+		if (action.includes("hit")) {
+			enemy.health -= me.damage;
+		} else if (action.includes("gather")) {
+			me.gold += 2;
+		} else if (action.includes("steal")) {
+			if (enemy.gold >= 1) {
+				enemy.gold--;
+				me.gold--;
+			}
+		} else if (action.includes("buy weapon")) {
+			if (me.gold >= 5) {
+				me.gold -= 5;
+				me.damage += 2;
+			}
+		}  else if (action.includes("buy armor")) {
+			if (me.gold >= 5) {
+				me.gold -= 5;
+				me.health += 10;
+				me.armor = 1;
+			}
 		}
 
 
