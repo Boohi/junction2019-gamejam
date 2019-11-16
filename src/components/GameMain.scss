@@ -91,8 +91,8 @@ $base-orange2: #db682e;
 }
 
 .move-icon {
-    width: 20px;
-    height: 20px;
+    width: 37px;
+    height: 37px;
     margin: 0 3px 0 3px;
     display: inline-block;
     vertical-align: middle;
@@ -103,6 +103,9 @@ $base-orange2: #db682e;
     display: inline-block;
     vertical-align: middle;
     margin-left: 10px;
+    font-style: italic;
+    font-size: 20px;
+    font-family: "Times new roman", Times, serif;
 }
 
 #test-p {
@@ -183,6 +186,7 @@ $base-orange2: #db682e;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 5px;
     height: 100%;
+    text-shadow: 2px 2px 2px black;
 }
 
 .player1-image img,

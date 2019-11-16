@@ -1,6 +1,6 @@
 .add-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .add-player1 {
@@ -16,22 +16,26 @@
 }
 
 .main-container a {
-	font-size: 50px;
-	margin-bottom: 30px;
+    font-size: 50px;
+    margin-bottom: 30px;
 }
 
 .input-fields {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .input-fields > div {
-	display: inline-block;
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 .input-fields > div > input {
-	height: 30px;
-	width: 200px;
+    height: 30px;
+    width: 200px;
+}
+
+.add-bloc {
+    text-shadow: 2px 2px 2px black;
 }

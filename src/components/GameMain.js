@@ -331,7 +331,7 @@ export default class GameMain extends Component {
                                 src="../hit.png"
                                 alt="attack"
                             />
-                            <div className="move-description">"hit"</div>
+                            <div className="move-description">hit</div>
                         </p>
                         <p>
                             <img
@@ -339,7 +339,7 @@ export default class GameMain extends Component {
                                 src="../steal.png"
                                 alt="attack"
                             />
-                            <div className="move-description">"steal"</div>
+                            <div className="move-description">steal</div>
                         </p>
                         <p>
                             <img
@@ -347,7 +347,7 @@ export default class GameMain extends Component {
                                 src="../block.png"
                                 alt="attack"
                             />
-                            <div className="move-description">"block"</div>
+                            <div className="move-description">block</div>
                         </p>
                         <p>
                             <img
@@ -355,7 +355,7 @@ export default class GameMain extends Component {
                                 src="../eat.png"
                                 alt="attack"
                             />
-                            <div className="move-description">"eat" (1g)</div>
+                            <div className="move-description">eat (1g)</div>
                         </p>
                         <p>
                             <img
@@ -363,9 +363,7 @@ export default class GameMain extends Component {
                                 src="../weapon.png"
                                 alt="attack"
                             />
-                            <div className="move-description">
-                                "weapon" (5g)
-                            </div>
+                            <div className="move-description">weapon (5g)</div>
                         </p>
                         <p>
                             <img
@@ -373,7 +371,7 @@ export default class GameMain extends Component {
                                 src="../armor.png"
                                 alt="attack"
                             />
-                            <div className="move-description">"armor" (5g)</div>
+                            <div className="move-description">armor (5g)</div>
                         </p>
                     </div>
                     <div className="player2-container">
