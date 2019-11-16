@@ -21,7 +21,8 @@ export default class GameMain extends Component {
             player2: {
                 action: 0, responseTime: 0, health: 10, gold: 2,
                 damage: 2, armor: 0, weapon: 0, block: 0
-            }
+			},
+			showSnippet: 0
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -134,7 +135,10 @@ export default class GameMain extends Component {
         player1.responseTime = 0;
         player2.action = 0;
         player2.responseTime = 0;
-        this.setState({player1, player2, counter : 60});
+		this.setState({player1, player2, counter : 60, showSnippet: 1});
+		setTimeout(() => {
+			this.setState({showSnippet: 0});
+		}, 4000);
     }
 
     handleMessage(message) {
@@ -149,7 +153,7 @@ export default class GameMain extends Component {
                 player1Action.responseTime = new Date().getTime();
                 this.setState({ player1Action });
                 this.setState({ player1Message: message });
-                if (this.state.player1.action == 1 && this.state.player2.action == 1) {
+                if (this.state.player1.action === 1 && this.state.player2.action === 1) {
                     this.playRound();
                 }
             }
@@ -164,7 +168,7 @@ export default class GameMain extends Component {
                 player2Action.responseTime = new Date().getTime();
                 this.setState({ player2Action });
                 this.setState({ player2Message: message });
-                if (this.state.player1.action == 1 && this.state.player2.action == 1) {
+                if (this.state.player1.action === 1 && this.state.player2.action === 1) {
                     this.playRound();
                 }
             }
@@ -240,7 +244,7 @@ export default class GameMain extends Component {
 				<p className="host-email">junction2019gamejam@gmail.com</p>
                 <div className="game-container">
                     <div className="player1-container">
-                        <Player1 data={this.state.player1}></Player1>
+                        <Player1 data={this.state.player1} showSnippet={this.state.showSnippet} snippet={this.state.player1Message.snippet}></Player1>
                     </div>
                     <div className="global-tasks">
 						<span>{this.state.counter}</span>
@@ -253,7 +257,7 @@ export default class GameMain extends Component {
                         <p>Buy armor (5 gold): buy armor</p>
                     </div>
                     <div className="player2-container">
-                        <Player2 data={this.state.player2}></Player2>
+                        <Player2 data={this.state.player2} showSnippet={this.state.showSnippet} snippet={this.state.player2Message.snippet}></Player2>
                     </div>
                 </div>
                 <p id="test-p">

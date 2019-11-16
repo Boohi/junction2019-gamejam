@@ -19,7 +19,8 @@ export default class Player1 extends Component {
 		}
 		
         let amount = Math.floor(this.props.data.health / 2);
-        let half = this.props.data.health % 2;
+		let half = this.props.data.health % 2;
+		console.log(this.props.snippet);
         return (
             <div className="player1-div">
                 <div className="player1-status">
@@ -54,11 +55,14 @@ export default class Player1 extends Component {
                 </div>
                 <div className="player1-actions">
 					<div className="player1-bubble">
-						{this.props.data.action === 0 &&
+						{this.props.data.action === 0 && this.props.showSnippet === 0 &&
 							<p>...</p>
 						}
 						{this.props.data.action === 1 &&
 							<p>READY</p>
+						}
+						{this.props.showSnippet === 1 &&
+							<p>{this.props.snippet} ACTION</p>
 						}
 					</div>
 				</div>

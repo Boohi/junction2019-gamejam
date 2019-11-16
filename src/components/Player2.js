@@ -24,11 +24,14 @@ export default class Player2 extends Component {
             <div className="player2-div">
                 <div className="player2-actions">
 				<div className="player2-bubble">
-						{this.props.data.action === 0 &&
+						{this.props.data.action === 0 && this.props.showSnippet === 0 &&
 							<p>...</p>
 						}
 						{this.props.data.action === 1 &&
 							<p>READY</p>
+						}
+						{this.props.showSnippet === 1 &&
+							<p>{this.props.snippet}</p>
 						}
 					</div>
 				</div>
