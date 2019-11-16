@@ -9,7 +9,9 @@ export default class GameMain extends Component {
             player1Mail: "otto.maenpaa@gmail.com",
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
-            player2Message: {},
+			player2Message: {},
+			player1: {health: 100, gold: 0, damage: 5, armor: 5},
+			player2: {health: 100, gold: 0, damage: 5, armor: 5}
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -17,6 +19,8 @@ export default class GameMain extends Component {
     }
 
     componentDidMount() {
+		document.getElementById("player1input").style.display = "none";
+		document.getElementById("player2input").style.display = "none";
         setInterval(() => {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);

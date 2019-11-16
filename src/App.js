@@ -51,8 +51,7 @@ function App() {
                         onClick={() => handleAuthClick()}
                     >
                     </div>
-					<input type="text" id="player1input"></input>
-					<input type="text" id="player2input"></input>
+
                     <Router>
                         <div>
                             <Route
@@ -65,7 +64,8 @@ function App() {
                         </div>
                     </Router>
 					<div>
-
+						<input type="text" id="player1input"></input>
+						<input type="text" id="player2input"></input>
 					</div>
                 </div>
             )}
