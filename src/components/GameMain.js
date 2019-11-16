@@ -39,9 +39,21 @@ export default class GameMain extends Component {
 			me = this.state.player2;
 			enemy = this.state.player1;
 		}
+
 		if (action === "hit") {
 			enemy.health--;
 			this.setState({player1: me, player2: enemy});
+		}
+
+
+		this.updateState(player, me, enemy);
+	}
+
+	updateState(player, me, enemy) {
+		if (player === 1) {
+			this.setState({player1: me, player2: enemy});
+		} else if (player === 2) {
+			this.setState({player1: enemy, player2: me});
 		}
 	}
 
