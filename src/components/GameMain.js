@@ -96,15 +96,25 @@ export default class GameMain extends Component {
                 }
                 enemy.health = Math.max(0, enemy.health - me.damage);
                 setTimeout(() => {
-                    if (!document.getElementById(p_img)) return ;
+                    if (!document.getElementById(p_img)) return;
                     if (player === 1) {
-                        document.getElementById(p_img).src = '/images/Player2/Player2_' + this.state.player2.armor + '_' + this.state.player2.weapon + '_0.png';
+                        document.getElementById(p_img).src =
+                            "/images/Player2/Player2_" +
+                            this.state.player2.armor +
+                            "_" +
+                            this.state.player2.weapon +
+                            "_0.png";
                     } else {
-                        document.getElementById(p_img).src = '/images/Player1/Player1_' + this.state.player1.armor + '_' + this.state.player1.weapon + '_0.png';
+                        document.getElementById(p_img).src =
+                            "/images/Player1/Player1_" +
+                            this.state.player1.armor +
+                            "_" +
+                            this.state.player1.weapon +
+                            "_0.png";
                     }
                 }, 1);
                 setTimeout(() => {
-                    if (!document.getElementById(p_img)) return ;
+                    if (!document.getElementById(p_img)) return;
                     let health;
                     if (enemy.health >= 8) {
                         health = 4;
@@ -118,9 +128,23 @@ export default class GameMain extends Component {
                         health = 0;
                     }
                     if (player === 1) {
-                        document.getElementById(p_img).src = '/images/Player2/Player2_' + this.state.player2.armor + '_' + this.state.player2.weapon + '_' + health + '.png';
+                        document.getElementById(p_img).src =
+                            "/images/Player2/Player2_" +
+                            this.state.player2.armor +
+                            "_" +
+                            this.state.player2.weapon +
+                            "_" +
+                            health +
+                            ".png";
                     } else {
-                        document.getElementById(p_img).src = '/images/Player1/Player1_' + this.state.player1.armor + '_' + this.state.player1.weapon + '_' + health + '.png';
+                        document.getElementById(p_img).src =
+                            "/images/Player1/Player1_" +
+                            this.state.player1.armor +
+                            "_" +
+                            this.state.player1.weapon +
+                            "_" +
+                            health +
+                            ".png";
                     }
                 }, 2000);
                 if (enemy.health === 0) {
