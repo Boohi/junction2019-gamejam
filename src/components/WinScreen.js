@@ -8,6 +8,7 @@ export default class WinScreen extends Component {
     }
     componentDidMount() {
         setInterval(this.changePictures.bind(this), 500);
+        console.log(this.props.location.state.winner);
     }
     changePictures() {
         if (this.state.p1med === "p1winDown.png") {
@@ -17,13 +18,12 @@ export default class WinScreen extends Component {
         }
     }
     render() {
-        console.log("test");
         return (
             <div className="win-grid">
-		<div className="grid-header">
-			<img src="battlemail005.png" alt="Game logo"></img>
-                    	<h1>Player X Wins!</h1>
-		</div>
+                <div className="grid-header">
+                    <img src="battlemail005.png" alt="Game logo"></img>
+                    <h1>Player X Wins!</h1>
+                </div>
                 <div className="grid-p1">
                     <img
                         src={"/" + this.state.p1med}

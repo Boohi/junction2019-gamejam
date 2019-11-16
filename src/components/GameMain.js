@@ -39,7 +39,7 @@ export default class GameMain extends Component {
 		this.setState({ startDate: new Date().getTime() });
 		let flag = 0;
         setInterval(() => {
-            this.getPageOfMessages();
+			this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
         setInterval(() => {
@@ -75,7 +75,10 @@ export default class GameMain extends Component {
                 }
                 enemy.block = 0;
             } else {
-                enemy.health = Math.max(0, enemy.health - me.damage);
+				enemy.health = Math.max(0, enemy.health - me.damage);
+				if (enemy.health === 0) {
+					this.props.history.push({pathname: '/win', state: { winner: player }});
+				}
             }
         } else if (action.includes("gather")) {
             me.snippet = "GATHER";
