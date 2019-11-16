@@ -33,14 +33,13 @@ function App() {
         window.gapi.load("client:auth2", initClient);
     }
     function initClient() {
-        window.gapi.client
-            .init({
-                apiKey: apiKey,
-                discoveryDocs: discoveryDocs,
-                clientId: clientId,
-                scope: scopes
-            });
-	}
+        window.gapi.client.init({
+            apiKey: apiKey,
+            discoveryDocs: discoveryDocs,
+            clientId: clientId,
+            scope: scopes
+        });
+    }
 
     return (
         <div className="App">
@@ -49,24 +48,50 @@ function App() {
                     <div
                         className="authorize-button"
                         onClick={() => handleAuthClick()}
-                    >
-                    </div>
+                    ></div>
 
                     <Router>
-                        <div>
+                        <div className="main-container">
                             <Route
                                 exact
                                 path="/"
                                 component={StartScreen}
                             ></Route>
-                            <Route path="/game" render={(props) => <GameMain emails={{player1: document.getElementById("player1input").value, player2: document.getElementById("player2input").value}} {...props} /> } ></Route>
-							<Link to="/game">Start New Game!</Link>
+                            <Route
+                                path="/game"
+                                render={props => (
+                                    <GameMain
+                                        emails={{
+                                            player1: document.getElementById(
+                                                "player1input"
+                                            ).value,
+                                            player2: document.getElementById(
+                                                "player2input"
+                                            ).value
+                                        }}
+                                        {...props}
+                                    />
+                                )}
+                            ></Route>
+                            <div className="input-fields">
+                                <div>
+                                    <input
+                                        type="email"
+                                        id="player1input"
+                                        placeholder="Player 1 email"
+                                    ></input>
+                                </div>
+                                <div>
+                                    <input
+                                        type="email"
+                                        id="player2input"
+                                        placeholder="Player 2 email"
+                                    ></input>
+                                </div>
+                            </div>
+                            <Link to="/game">Start New Game!</Link>
                         </div>
                     </Router>
-					<div>
-						<input type="text" id="player1input"></input>
-						<input type="text" id="player2input"></input>
-					</div>
                 </div>
             )}
         </div>

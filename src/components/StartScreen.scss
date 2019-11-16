@@ -1,19 +1,37 @@
-.ad-grid {
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
+.add-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 
-.ad-player1 {
-padding-top: 55px;
-margin-right: 25px;
-margin-left: auto;
+.add-player1 {
+    padding-top: 55px;
+    margin-right: 25px;
+    margin-left: auto;
 }
 
-.ad-player2 {
-padding-top: 55px;
-margin-left: 25px;
-margin-right: auto;
+.add-player2 {
+    padding-top: 55px;
+    margin-left: 25px;
+    margin-right: auto;
 }
 
-.ad-bloc {
+.main-container a {
+	font-size: 50px;
+	margin-bottom: 30px;
+}
+
+.input-fields {
+	margin-top: 10px;
+}
+
+.input-fields > div {
+	display: inline-block;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.input-fields > div > input {
+	height: 30px;
+	width: 200px;
 }
