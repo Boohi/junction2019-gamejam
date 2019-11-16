@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import StartScreen from "./components/StartScreen";
 import { Route, Link, BrowserRouter as Router } from "react-router-dom";
