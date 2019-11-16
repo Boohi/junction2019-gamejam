@@ -316,61 +316,31 @@ export default class GameMain extends Component {
                     <div className="global-tasks">
                         <span>{this.state.counter}</span>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
+                            <img className="move-icon" src="../hit.png" alt="attack"/>
                             <div className="move-description">"hit"</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
-                            <div className="move-description">"gather"</div>
+                            <img className="move-icon" src="../quest.png" alt="attack"/>
+                            <div className="move-description">"quest"</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
+                            <img className="move-icon" src="../steal.png" alt="attack"/>
                             <div className="move-description">"steal"</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
+                            <img className="move-icon" src="../block.png" alt="attack"/>
                             <div className="move-description">"block"</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
+                            <img className="move-icon" src="../eat.png" alt="attack"/>
                             <div className="move-description">"eat" (1g)</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
-                            <div className="move-description">
-                                "weapon" (5g)
-                            </div>
+                            <img className="move-icon" src="../weapon.png" alt="attack"/>
+                            <div className="move-description">"weapon" (5g)</div>
                         </p>
                         <p>
-                            <img
-                                className="move-icon"
-                                src="../heart.png"
-                                alt="attack"
-                            />
+                            <img className="move-icon" src="../armor.png" alt="attack"/>
                             <div className="move-description">"armor" (5g)</div>
                         </p>
                     </div>
