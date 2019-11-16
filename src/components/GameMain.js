@@ -13,8 +13,15 @@ export default class GameMain extends Component {
             player2Mail: "joonas.suonpera@gmail.com",
             player1Message: {},
             player2Message: {},
-            player1: { health: 10, gold: 1, damage: 2, armor: 0, weapon: 0, block: 0 },
-            player2: { health: 10, gold: 2, damage: 2, armor: 0, weapon: 0, block: 0 }
+            counter: 60,
+            player1: {
+                action: 0, responseTime: 0, health: 10, gold: 5,
+                damage: 2, armor: 0, weapon: 0, block: 0 
+            },
+            player2: {
+                action: 0, responseTime: 0, health: 10, gold: 2,
+                damage: 2, armor: 0, weapon: 0, block: 0
+            }
         };
 
         this.getPageOfMessages = this.getPageOfMessages.bind(this);
@@ -29,6 +36,9 @@ export default class GameMain extends Component {
             this.getPageOfMessages();
             console.log(this.state.player1Message, this.state.player2Message);
         }, 2000);
+        setInterval(() => {
+            this.setState({counter : Math.max(this.state.counter - 1, 0)});
+        }, 1000);
     }
 
     playerAction(player, action) {
@@ -91,6 +101,34 @@ export default class GameMain extends Component {
         }
     }
 
+    playRound() {
+        let player1Action = this.state.player1.action;
+        let player2Action = this.state.player2.action;
+        let player1Message = this.state.player1Message.snippet;
+        let player2Message = this.state.player2Message.snippet;
+
+        if (player1Action === 0 && player2Action === 0) {
+            ;
+        } else if (player1Action === 0) {
+            this.playerAction(2, player2Message);
+        } else if (player2Action === 0) {
+            this.playerAction(1, player1Message);
+        } else if (this.state.player2.responseTime > this.state.player1.responseTime) {
+            this.playerAction(1, player1Message);
+            this.playerAction(2, player2Message);
+        } else {
+            this.playerAction(2, player2Message);
+            this.playerAction(1, player1Message);
+        }
+        let player1 = this.state.player1;
+        let player2 = this.state.player2;
+        player1.action = 0;
+        player1.responseTime = 0;
+        player2.action = 0;
+        player2.responseTime = 0;
+        this.setState({player1, player2, counter : 60});
+    }
+
     handleMessage(message) {
         if (message.date < this.state.startDate) return;
         if (message.email === this.props.emails.player1) {
@@ -98,8 +136,14 @@ export default class GameMain extends Component {
                 this.state.player1Message.date < message.date ||
                 this.state.player1Message.date === undefined
             ) {
+                let player1Action = this.state.player1;
+                player1Action.action = 1;
+                player1Action.responseTime = new Date().getTime();
+                this.setState({ player1Action });
                 this.setState({ player1Message: message });
-                this.playerAction(1, message.snippet);
+                if (this.state.player1.action == 1 && this.state.player2.action == 1) {
+                    this.playRound();
+                }
             }
         }
         if (message.email === this.props.emails.player2) {
@@ -107,8 +151,14 @@ export default class GameMain extends Component {
                 this.state.player2Message.date < message.date ||
                 this.state.player2Message.date === undefined
             ) {
+                let player2Action = this.state.player2;
+                player2Action.action = 1;
+                player2Action.responseTime = new Date().getTime();
+                this.setState({ player2Action });
                 this.setState({ player2Message: message });
-                this.playerAction(2, message.snippet);
+                if (this.state.player1.action == 1 && this.state.player2.action == 1) {
+                    this.playRound();
+                }
             }
         }
     }
@@ -191,6 +241,11 @@ export default class GameMain extends Component {
                         <p>Heal yourself (1 gold): eat</p>
                         <p>Buy weapon (5 gold): buy weapon</p>
                         <p>Buy armor (5 gold): buy armor</p>
+                        <p>{this.state.counter}</p>
+                        <p>P1: {this.state.player1.action}</p>
+                        <p>P2: {this.state.player2.action}</p>
+                        <p>P1 restime: {this.state.player1.responseTime}</p>
+                        <p>P2 restime: {this.state.player1.responseTime}</p>
                     </div>
                     <div className="player2-container">
                         <Player2 data={this.state.player2}></Player2>
