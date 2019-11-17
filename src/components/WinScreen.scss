@@ -1,28 +1,29 @@
 .win-grid {
-	display: grid;
-	grid-template-rows: 200px 1fr;
-	grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-rows: 200px 1fr;
+    grid-template-columns: 1fr 1fr;
+    text-shadow: 2px 2px 2px black;
 }
 
 .grid-header {
-	grid-row-start: 1;
-	grid-column-start: 1;
-	grid-row-end: 2;
-	grid-column-end: 3;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 2;
+    grid-column-end: 3;
 }
 
 .grid-p1 {
-	grid-row-start: 2;
-	grid-column-start: 1;
-	grid-row-end: 3;
-	grid-column-end:2;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 2;
 }
 
 .grid-p2 {
-	grid-row-start: 2;
-	grid-column-start: 2;
-	grid-row-end: 3;
-	grid-column-end:3;
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-row-end: 3;
+    grid-column-end: 3;
 }
 
 .main-container a {
