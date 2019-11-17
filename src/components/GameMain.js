@@ -134,16 +134,29 @@ export default class GameMain extends Component {
             me.snippet = "GATHER";
             me.gold += 2;
         } else if (action.includes("steal")) {
-            me.snippet = "STEAL";
+			me.snippet = "STEAL";
+			let p_img;
+			if (player === 1) {
+				p_img = "p2_img";
+			} else {
+				p_img = "p1_img";
+			}
             if (enemy.block && enemy.gold >= 1) {
                 if (Math.random() > 0.5) {
                     enemy.gold--;
-                    me.gold++;
+					me.gold++;
                 }
                 enemy.block = 0;
             } else if (enemy.gold >= 1) {
                 enemy.gold--;
-                me.gold++;
+				me.gold++;
+				if (document.getElementById(p_img)) {
+					let source = document.getElementById(p_img).src;
+					document.getElementById(p_img).src = "/p" + player + "steal.png";
+					setTimeout(() => {
+						document.getElementById(p_img).src = source;
+					}, 1500);
+				}
             }
         } else if (action.includes("weapon")) {
             me.snippet = "BUY WEAPON";
